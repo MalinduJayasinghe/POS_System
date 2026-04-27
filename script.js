@@ -172,10 +172,10 @@ function renderDashboard() {
     const inStock = items.reduce((s,i) => s+(i.qty>0?1:0), 0);
 
     $('#customers').text(customers.length);
-    $('#dash-items').text(inStock);
-    $('#dash-orders').text(todayOrders.length);
-    $('#dash-revenue').text(fmtMoney(revenue));
-    $('#dash-date').text(new Date().toLocaleDateString('en-US', {weekday:'long',year:'numeric',month:'long',day:'numeric'}));
+    $('#items').text(inStock);
+    $('#orders').text(todayOrders.length);
+    $('#revenue').text(fmtMoney(revenue));
+    $('#date').text(new Date().toLocaleDateString('en-US', {weekday:'long',year:'numeric',month:'long',day:'numeric'}));
 
     // Recent orders (last 5, newest first)
     const recent = [...orders].sort((a,b)=>new Date(b.date)-new Date(a.date)).slice(0,5);

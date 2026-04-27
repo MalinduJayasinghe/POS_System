@@ -72,12 +72,13 @@
             <div class="d-flex justify-content-between align-items-start mb-4">
                 <div>
                     <h1 class="page-title">Welcome back, Admin</h1>
-                    <p class="page-sub mb-0" id="dash-date"></p>
+                    <p class="page-sub mb-0" id="date"></p>
                 </div>
             </div>
 
             <!---------------- Stat cards ---------------->
             <div class="row g-3 mb-4">
+
                 <div class="col-6 col-md-3">
                     <div class="stat-card blue">
                         <div class="stat-icon blue">👥</div>
@@ -85,30 +86,34 @@
                         <div class="stat-label">Total Customers</div>
                     </div>
                 </div>
+
                 <div class="col-6 col-md-3">
                     <div class="stat-card green">
                         <div class="stat-icon green">📦</div>
-                        <div class="stat-value" id="dash-items">0</div>
+                        <div class="stat-value" id="items">0</div>
                         <div class="stat-label">Items in Stock</div>
                     </div>
                 </div>
+
                 <div class="col-6 col-md-3">
                     <div class="stat-card gold">
                         <div class="stat-icon gold">🧾</div>
-                        <div class="stat-value" id="dash-orders">0</div>
+                        <div class="stat-value" id="orders">0</div>
                         <div class="stat-label">Orders Today</div>
                     </div>
                 </div>
+
                 <div class="col-6 col-md-3">
                     <div class="stat-card red">
                         <div class="stat-icon red">💰</div>
-                        <div class="stat-value" id="dash-revenue" style="font-size:20px">0</div>
+                        <div class="stat-value" id="revenue" style="font-size:20px">0</div>
                         <div class="stat-label">Revenue Today</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Quick access -->
+
+            <!---------------- Quick Access ---------------->
             <span class="section-label">Quick Access</span>
             <div class="quick-access mb-4">
                 <button id="dash-btn-customer" class="btn btn-pos-primary rounded-2 px-4 py-2">+ New Customer</button>
