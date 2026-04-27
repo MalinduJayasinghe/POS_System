@@ -2,7 +2,7 @@
 
 // Logout buttons in each menu
 $(function() {
-    $('#btn-cus-logout, #btn-logout-items, #btn-logout-orders, #btn-logout-hist').on('click', function() {
+    $('#btn-cus-logout, #btn-logout-items, #btn-logout-orders, #btn-logout-history').on('click', function() {
         $('#btn-logout').trigger('click');
     });
 });
@@ -228,7 +228,7 @@ function renderCustomers(filter='') {
         <td>${escHtml(c.address||'—')}</td>
         <td>
           <div class="d-flex gap-2">
-            <button class="btn btn-sm btn-pos-ghost rounded" onclick="editCustomer('${c.id}')">✏ Edit</button>
+            <button class="btn btn-sm btn-ghost rounded" onclick="editCustomer('${c.id}')">✏ Edit</button>
             <button class="btn btn-sm btn-pos-danger rounded" onclick="deleteCustomer('${c.id}')">🗑 Del</button>
           </div>
         </td>
@@ -334,7 +334,7 @@ function renderItems(filter='') {
             : `<span class="pos-badge badge-success">In Stock</span>`}</td>
         <td>
           <div class="d-flex gap-2">
-            <button class="btn btn-sm btn-pos-ghost rounded" onclick="editItem('${item.id}')">✏ Edit</button>
+            <button class="btn btn-sm btn-ghost rounded" onclick="editItem('${item.id}')">✏ Edit</button>
             <button class="btn btn-sm btn-pos-danger rounded" onclick="deleteItem('${item.id}')">🗑 Del</button>
           </div>
         </td>
@@ -620,15 +620,15 @@ function renderHistory(searchTerm='', fromDate='', toDate='') {
     });
 }
 
-$('#hist-filter-btn').on('click', function() {
-    renderHistory($('#hist-search').val(), $('#hist-from').val(), $('#hist-to').val());
+$('#history-filter-btn').on('click', function() {
+    renderHistory($('#history-search').val(), $('#history-from').val(), $('#history-to').val());
 });
-$('#hist-clear-btn').on('click', function() {
-    $('#hist-search').val(''); $('#hist-from').val(''); $('#hist-to').val('');
+$('#history-clear-btn').on('click', function() {
+    $('#history-search').val(''); $('#history-from').val(''); $('#history-to').val('');
     renderHistory();
 });
-$('#hist-search').on('input', function() {
-    renderHistory($(this).val(), $('#hist-from').val(), $('#hist-to').val());
+$('#history-search').on('input', function() {
+    renderHistory($(this).val(), $('#history-from').val(), $('#history-to').val());
 });
 
 // ── Security: block back-navigation after logout ──────────────
