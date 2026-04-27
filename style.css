@@ -286,18 +286,18 @@ h1,h2,h3,h4,h5,h6 {
 .badge-blue     { background: #EBF8FF; color: var(--dark-blue-light); }
 
 /* ── Form ───────────────────────────────────────────────────── */
-.pos-label { font-size: 12px; font-weight: 600; color: var(--text-2); margin-bottom: 5px; display: block; }
-.pos-label .req { color: var(--danger); margin-left: 2px; }
-.pos-input {
+.label { font-size: 12px; font-weight: 600; color: var(--text-2); margin-bottom: 5px; display: block; }
+.label .req { color: var(--danger); margin-left: 2px; }
+.input {
     font-family: var(--font-body); font-size: 13px; color: var(--text-1);
     background: var(--white); border: 1.5px solid var(--border-mid);
     border-radius: var(--r-sm); padding: 9px 12px; width: 100%;
     outline: none; transition: border-color .2s;
 }
-.pos-input:focus { border-color: var(--dark-blue-light); box-shadow: 0 0 0 3px rgba(46,134,193,.12); }
-.pos-input::placeholder { color: var(--text-4); }
-.pos-input.readonly { background: var(--surface); color: var(--text-3); }
-.pos-select {
+.input:focus { border-color: var(--dark-blue-light); box-shadow: 0 0 0 3px rgba(46,134,193,.12); }
+.input::placeholder { color: var(--text-4); }
+.input.readonly { background: var(--surface); color: var(--text-3); }
+.select {
     font-family: var(--font-body); font-size: 13px; color: var(--text-1);
     background: var(--surface); border: 1.5px solid var(--border-mid);
     border-radius: var(--r-sm); padding: 9px 12px; width: 100%;
@@ -306,7 +306,7 @@ h1,h2,h3,h4,h5,h6 {
     background-repeat: no-repeat; background-position: right 12px center;
     padding-right: 32px;
 }
-.pos-select:focus { border-color: var(--dark-blue-light); }
+.select:focus { border-color: var(--dark-blue-light); }
 
 /* ── Search bar ─────────────────────────────────────────────── */
 .search-bar {
@@ -325,12 +325,12 @@ h1,h2,h3,h4,h5,h6 {
     background: var(--white); border: 1px solid var(--border);
     border-radius: var(--r-lg); padding: 16px 20px; margin-bottom: 12px;
 }
-.order-id-pill {
+.order-id{
     background: var(--surface); border: 1px solid var(--border);
     border-radius: var(--r-sm); padding: 6px 14px; font-size: 12px;
     color: var(--text-3); font-weight: 500; white-space: nowrap;
 }
-.price-pill {
+.price {
     background: var(--surface); border: 1px solid var(--border);
     border-radius: var(--r-sm); padding: 9px 14px; font-size: 13px;
     font-weight: 600; color: var(--text-2); white-space: nowrap;

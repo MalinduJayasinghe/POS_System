@@ -31,13 +31,13 @@
         <form id="login-form" novalidate>
 
             <div class="mb-3">
-                <label class="pos-label" for="login-username">Username</label>
-                <input id="login-username" type="text" class="pos-input" placeholder="Enter username"/>
+                <label class="label" for="login-username">Username</label>
+                <input id="login-username" type="text" class="input" placeholder="Enter username"/>
             </div>
 
             <div class="mb-3">
-                <label class="pos-label" for="login-password">Password</label>
-                <input id="login-password" type="password" class="pos-input" placeholder="••••••••"/>
+                <label class="label" for="login-password">Password</label>
+                <input id="login-password" type="password" class="input" placeholder="••••••••"/>
             </div>
 
             <div id="login-error" class="alert-warn-inline" style="display:none;">
@@ -246,7 +246,7 @@
     </div>
 </div>
 
-<!-- ── VIEW: NEW ORDER ──────────────────────────────────────── -->
+<!----------------------- View Orders ----------------------->
 <div id="view-orders" class="view">
     <div class="app-layout">
 
@@ -266,14 +266,14 @@
             <h1 class="page-title">Place New Order</h1>
             <p class="page-sub">Select a customer and add items to create an order</p>
 
-            <!-- Customer selector -->
+            <!-- Customer Selector -->
             <div class="order-section">
                 <div class="d-flex align-items-center gap-3 flex-wrap">
-                    <label class="pos-label mb-0" style="white-space:nowrap">Customer <span style="color:var(--danger)">*</span></label>
-                    <select id="order-customer-select" class="pos-select" style="max-width:320px">
+                    <label class="label mb-0" style="white-space:nowrap">Customer <span style="color:var(--danger)">*</span></label>
+                    <select id="order-customer-select" class="select" style="max-width:320px">
                         <option value="">Choose a customer…</option>
                     </select>
-                    <div class="order-id-pill ms-auto" id="order-id-display">Order ID: —</div>
+                    <div class="order-id ms-auto" id="order-id-display">Order ID: —</div>
                 </div>
             </div>
 
@@ -281,17 +281,17 @@
             <div class="order-section">
                 <span class="section-label">Add Item to Order</span>
                 <div class="d-flex align-items-center gap-2 flex-wrap">
-                    <select id="order-item-select" class="pos-select" style="flex:1;min-width:220px;max-width:300px">
+                    <select id="order-item-select" class="select" style="flex:1;min-width:220px;max-width:300px">
                         <option value="">Select item…</option>
                     </select>
-                    <div class="price-pill" id="order-unit-price">Unit Price: —</div>
-                    <label class="pos-label mb-0 ms-2">Qty</label>
-                    <input id="order-qty" type="number" class="pos-input" style="width:80px" value="1" min="1"/>
+                    <div class="price" id="order-unit-price">Unit Price: 0</div>
+                    <label class="label mb-0 ms-2">Qty</label>
+                    <input id="order-qty" type="number" class="input" style="width:80px" value="1" min="1"/>
                     <button id="btn-add-order-item" class="btn btn-teal rounded-2 px-3 py-2">+ Add</button>
                 </div>
             </div>
 
-            <!-- Order items table -->
+            <!-- Order Items table -->
             <div class="card">
                 <div class="card-header gold">
                     <span>🛒 Order Items</span>
@@ -397,22 +397,22 @@
                 <div class="modal-body">
                     <div class="row g-3">
                         <div class="col-6">
-                            <label class="pos-label">Customer ID</label>
-                            <input id="cust-id-display" class="pos-input readonly" readonly/>
+                            <label class="label">Customer ID</label>
+                            <input id="cust-id-display" class="input readonly" readonly/>
                         </div>
                         <div class="col-6">
-                            <label class="pos-label" for="cust-name">Full Name <span class="req">*</span></label>
-                            <input id="cust-name" class="pos-input" placeholder="Enter full name" required/>
+                            <label class="label" for="cust-name">Full Name <span class="req">*</span></label>
+                            <input id="cust-name" class="input" placeholder="Enter full name" required/>
                             <div class="invalid-feedback">Name is required.</div>
                         </div>
                         <div class="col-6">
-                            <label class="pos-label" for="cust-contact">Contact Number <span class="req">*</span></label>
-                            <input id="cust-contact" class="pos-input" placeholder="+94 7x xxx xxxx" required/>
+                            <label class="label" for="cust-contact">Contact Number <span class="req">*</span></label>
+                            <input id="cust-contact" class="input" placeholder="+94 7x xxx xxxx" required/>
                             <div class="invalid-feedback">Enter a valid contact number.</div>
                         </div>
                         <div class="col-6">
-                            <label class="pos-label" for="cust-address">Address</label>
-                            <input id="cust-address" class="pos-input" placeholder="Street, City, Country"/>
+                            <label class="label" for="cust-address">Address</label>
+                            <input id="cust-address" class="input" placeholder="Street, City, Country"/>
                         </div>
                     </div>
                 </div>
@@ -437,23 +437,23 @@
                 <div class="modal-body">
                     <div class="row g-3">
                         <div class="col-6">
-                            <label class="pos-label" for="item-code">Item Code <span class="req">*</span></label>
-                            <input id="item-code" class="pos-input" placeholder="ITM-001" required/>
+                            <label class="label" for="item-code">Item Code <span class="req">*</span></label>
+                            <input id="item-code" class="input" placeholder="ITM-001" required/>
                             <div id="item-code-feedback" class="invalid-feedback">Required / already exists.</div>
                         </div>
                         <div class="col-6">
-                            <label class="pos-label" for="item-name">Item Name <span class="req">*</span></label>
-                            <input id="item-name" class="pos-input" placeholder="Enter item name" required/>
+                            <label class="label" for="item-name">Item Name <span class="req">*</span></label>
+                            <input id="item-name" class="input" placeholder="Enter item name" required/>
                             <div class="invalid-feedback">Name is required.</div>
                         </div>
                         <div class="col-6">
-                            <label class="pos-label" for="item-price">Unit Price (Rs.) <span class="req">*</span></label>
-                            <input id="item-price" type="number" min="0.01" step="0.01" class="pos-input" placeholder="0.00" required/>
+                            <label class="label" for="item-price">Unit Price (Rs.) <span class="req">*</span></label>
+                            <input id="item-price" type="number" min="0.01" step="0.01" class="input" placeholder="0.00" required/>
                             <div class="invalid-feedback">Enter a valid price.</div>
                         </div>
                         <div class="col-6">
-                            <label class="pos-label" for="item-qty">Quantity on Hand <span class="req">*</span></label>
-                            <input id="item-qty" type="number" min="0" class="pos-input" placeholder="0" required/>
+                            <label class="label" for="item-qty">Quantity on Hand <span class="req">*</span></label>
+                            <input id="item-qty" type="number" min="0" class="input" placeholder="0" required/>
                             <div class="invalid-feedback">Enter a valid quantity.</div>
                         </div>
                     </div>
