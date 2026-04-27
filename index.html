@@ -1,10 +1,536 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>K.L. Computers</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
+
+<!-- Toast container -->
+<div id="toast-area" class="toast-container position-fixed top-0 end-0 p-3" style="margin-top:64px;z-index:9999"></div>
+
+<!----------------------- LOGIN PAGE ----------------------->
+<div id="login" class="view">
+    <div class="login-dots"></div>
+    <div class="login-glow"></div>
+    <div class="login-card">
+        <div class="login-logo">KL</div>
+        <div class="login-title">K.L. Computers</div>
+        <div class="login-sub">Sign in to your account to continue</div>
+
+        <form id="login-form" novalidate>
+
+            <div class="mb-3">
+                <label class="pos-label" for="login-username">Username</label>
+                <input id="login-username" type="text" class="pos-input" placeholder="Enter username"/>
+            </div>
+
+            <div class="mb-3">
+                <label class="pos-label" for="login-password">Password</label>
+                <input id="login-password" type="password" class="pos-input" placeholder="••••••••"/>
+            </div>
+
+            <div id="login-error" class="alert-warn-inline" style="display:none;">
+                <span>⚠</span> Invalid Username or Password. Please try again.
+            </div>
+
+            <button type="submit" class="login-btn">Sign In →</button>
+        </form>
+    </div>
+</div>
+
+
+<!----------------------- Dashboard ----------------------->
+<div id="dashboard" class="view">
+    <div class="app-layout">
+
+        <nav class="navbar">
+            <a class="navbar-brand" href="#"><div class="brand-dot"></div> K.L. Computers</a>
+            <ul class="navbar-nav d-flex flex-row gap-1">
+                <li class="nav-item"><button class="nav-link-item active" data-view="dashboard">Dashboard</button></li>
+                <li class="nav-item"><button class="nav-link-item" data-view="view-customers">Customers</button></li>
+                <li class="nav-item"><button class="nav-link-item" data-view="view-items">Items</button></li>
+                <li class="nav-item"><button class="nav-link-item" data-view="view-orders">New Order</button></li>
+                <li class="nav-item"><button class="nav-link-item" data-view="view-history">Order History</button></li>
+            </ul>
+            <button id="btn-logout" class="btn-logout">Logout</button>
+        </nav>
+
+        <div class="page-body">
+
+            <!---------------- Header ---------------->
+            <div class="d-flex justify-content-between align-items-start mb-4">
+                <div>
+                    <h1 class="page-title">Welcome back, Admin</h1>
+                    <p class="page-sub mb-0" id="dash-date"></p>
+                </div>
+            </div>
+
+            <!---------------- Stat cards ---------------->
+            <div class="row g-3 mb-4">
+                <div class="col-6 col-md-3">
+                    <div class="stat-card blue">
+                        <div class="stat-icon blue">👥</div>
+                        <div class="stat-value" id="dash-customers">—</div>
+                        <div class="stat-label">Total Customers</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-card green">
+                        <div class="stat-icon green">📦</div>
+                        <div class="stat-value" id="dash-items">—</div>
+                        <div class="stat-label">Items in Stock</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-card gold">
+                        <div class="stat-icon gold">🧾</div>
+                        <div class="stat-value" id="dash-orders">—</div>
+                        <div class="stat-label">Orders Today</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-card red">
+                        <div class="stat-icon red">💰</div>
+                        <div class="stat-value" id="dash-revenue" style="font-size:20px">—</div>
+                        <div class="stat-label">Revenue Today</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick access -->
+            <span class="section-label">Quick Access</span>
+            <div class="quick-access mb-4">
+                <button id="dash-btn-customer" class="btn btn-pos-primary rounded-2 px-4 py-2">+ New Customer</button>
+                <button id="dash-btn-item"     class="btn btn-pos-primary rounded-2 px-4 py-2">+ New Item</button>
+                <button id="dash-btn-order"    class="btn btn-pos-gold rounded-2 px-4 py-2">Place Order</button>
+            </div>
+
+            <!-- Recent orders -->
+            <span class="section-label">Recent Orders</span>
+            <div class="pos-card">
+                <div class="table-responsive">
+                    <table class="pos-table">
+                        <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Date</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody id="dash-orders-body">
+                        <tr><td colspan="5" class="text-center text-muted py-4">Loading…</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── VIEW: CUSTOMERS ──────────────────────────────────────── -->
+<div id="view-customers" class="view">
+    <div class="app-layout">
+
+        <nav class="navbar">
+            <a class="navbar-brand" href="#"><div class="brand-dot"></div> K.L. Computers</a>
+            <ul class="navbar-nav d-flex flex-row gap-1">
+                <li class="nav-item"><button class="nav-link-item" data-view="dashboard">Dashboard</button></li>
+                <li class="nav-item"><button class="nav-link-item active" data-view="view-customers">Customers</button></li>
+                <li class="nav-item"><button class="nav-link-item" data-view="view-items">Items</button></li>
+                <li class="nav-item"><button class="nav-link-item" data-view="view-orders">New Order</button></li>
+                <li class="nav-item"><button class="nav-link-item" data-view="view-history">Order History</button></li>
+            </ul>
+            <button class="btn-logout" id="btn-logout-cust">Logout</button>
+        </nav>
+
+        <div class="page-body">
+            <div class="d-flex justify-content-between align-items-start mb-1">
+                <div>
+                    <h1 class="page-title">Customer Management</h1>
+                    <p class="page-sub">Manage your customer records</p>
+                </div>
+                <button id="btn-add-customer" class="btn btn-pos-primary rounded-2 px-4 py-2">+ Add Customer</button>
+            </div>
+
+            <div class="search-bar mb-3">
+                <span style="color:var(--text-4)">🔍</span>
+                <input id="cust-search" type="text" placeholder="Search by name or ID…"/>
+            </div>
+
+            <div class="pos-card">
+                <div class="table-responsive">
+                    <table class="pos-table">
+                        <thead>
+                        <tr>
+                            <th>Customer ID</th>
+                            <th>Full Name</th>
+                            <th>Contact No.</th>
+                            <th>Address</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody id="customers-tbody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── VIEW: ITEMS ───────────────────────────────────────────── -->
+<div id="view-items" class="view">
+    <div class="app-layout">
+
+        <nav class="navbar">
+            <a class="navbar-brand" href="#"><div class="brand-dot"></div> K.L. Computers</a>
+            <ul class="navbar-nav d-flex flex-row gap-1">
+                <li class="nav-item"><button class="nav-link-item" data-view="dashboard">Dashboard</button></li>
+                <li class="nav-item"><button class="nav-link-item" data-view="view-customers">Customers</button></li>
+                <li class="nav-item"><button class="nav-link-item active" data-view="view-items">Items</button></li>
+                <li class="nav-item"><button class="nav-link-item" data-view="view-orders">New Order</button></li>
+                <li class="nav-item"><button class="nav-link-item" data-view="view-history">Order History</button></li>
+            </ul>
+            <button class="btn-logout" id="btn-logout-items">Logout</button>
+        </nav>
+
+        <div class="page-body">
+            <div class="d-flex justify-content-between align-items-start mb-1">
+                <div>
+                    <h1 class="page-title">Item / Inventory Management</h1>
+                    <p class="page-sub">Track and manage your product catalogue</p>
+                </div>
+                <button id="btn-add-item" class="btn btn-pos-teal rounded-2 px-4 py-2">+ Add Item</button>
+            </div>
+
+            <div class="search-bar mb-3">
+                <span style="color:var(--text-4)">🔍</span>
+                <input id="item-search" type="text" placeholder="Search by code or name…"/>
+            </div>
+
+            <div class="pos-card">
+                <div class="table-responsive">
+                    <table class="pos-table">
+                        <thead>
+                        <tr>
+                            <th>Item Code</th>
+                            <th>Item Name</th>
+                            <th>Unit Price</th>
+                            <th>Qty on Hand</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody id="items-tbody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── VIEW: NEW ORDER ──────────────────────────────────────── -->
+<div id="view-orders" class="view">
+    <div class="app-layout">
+
+        <nav class="navbar">
+            <a class="navbar-brand" href="#"><div class="brand-dot"></div> K.L. Computers</a>
+            <ul class="navbar-nav d-flex flex-row gap-1">
+                <li class="nav-item"><button class="nav-link-item" data-view="dashboard">Dashboard</button></li>
+                <li class="nav-item"><button class="nav-link-item" data-view="view-customers">Customers</button></li>
+                <li class="nav-item"><button class="nav-link-item" data-view="view-items">Items</button></li>
+                <li class="nav-item"><button class="nav-link-item active" data-view="view-orders">New Order</button></li>
+                <li class="nav-item"><button class="nav-link-item" data-view="view-history">Order History</button></li>
+            </ul>
+            <button class="btn-logout" id="btn-logout-orders">Logout</button>
+        </nav>
+
+        <div class="page-body">
+            <h1 class="page-title">Place New Order</h1>
+            <p class="page-sub">Select a customer and add items to create an order</p>
+
+            <!-- Customer selector -->
+            <div class="order-section">
+                <div class="d-flex align-items-center gap-3 flex-wrap">
+                    <label class="pos-label mb-0" style="white-space:nowrap">Customer <span style="color:var(--danger)">*</span></label>
+                    <select id="order-customer-select" class="pos-select" style="max-width:320px">
+                        <option value="">Choose a customer…</option>
+                    </select>
+                    <div class="order-id-pill ms-auto" id="order-id-display">Order ID: —</div>
+                </div>
+            </div>
+
+            <!-- Add item row -->
+            <div class="order-section">
+                <span class="section-label">Add Item to Order</span>
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                    <select id="order-item-select" class="pos-select" style="flex:1;min-width:220px;max-width:300px">
+                        <option value="">Select item…</option>
+                    </select>
+                    <div class="price-pill" id="order-unit-price">Unit Price: —</div>
+                    <label class="pos-label mb-0 ms-2">Qty</label>
+                    <input id="order-qty" type="number" class="pos-input" style="width:80px" value="1" min="1"/>
+                    <button id="btn-add-order-item" class="btn btn-pos-teal rounded-2 px-3 py-2">+ Add</button>
+                </div>
+            </div>
+
+            <!-- Order items table -->
+            <div class="pos-card">
+                <div class="pos-card-header gold">
+                    <span>🛒 Order Items</span>
+                </div>
+                <div class="table-responsive">
+                    <table class="pos-table">
+                        <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Unit Price</th>
+                            <th class="text-center">Qty</th>
+                            <th>Subtotal</th>
+                            <th class="text-center">Remove</th>
+                        </tr>
+                        </thead>
+                        <tbody id="order-items-tbody">
+                        <tr><td colspan="5" class="text-center text-muted py-3">No items added yet</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="total-row">
+                    <div class="total-label">Grand Total</div>
+                    <div class="total-value" id="order-grand-total">Rs. 0</div>
+                </div>
+                <div class="order-action-bar">
+                    <button id="btn-clear-order" class="btn btn-pos-ghost rounded-2 px-4 py-2">Clear Order</button>
+                    <button id="btn-place-order" class="btn btn-pos-primary rounded-2 px-4 py-2" style="font-size:14px">Place Order ✓</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── VIEW: ORDER HISTORY ───────────────────────────────────── -->
+<div id="view-history" class="view">
+    <div class="app-layout">
+
+        <nav class="navbar">
+            <a class="navbar-brand" href="#"><div class="brand-dot"></div> K.L. Computers</a>
+            <ul class="navbar-nav d-flex flex-row gap-1">
+                <li class="nav-item"><button class="nav-link-item" data-view="dashboard">Dashboard</button></li>
+                <li class="nav-item"><button class="nav-link-item" data-view="view-customers">Customers</button></li>
+                <li class="nav-item"><button class="nav-link-item" data-view="view-items">Items</button></li>
+                <li class="nav-item"><button class="nav-link-item" data-view="view-orders">New Order</button></li>
+                <li class="nav-item"><button class="nav-link-item active" data-view="view-history">Order History</button></li>
+            </ul>
+            <button class="btn-logout" id="btn-logout-hist">Logout</button>
+        </nav>
+
+        <div class="page-body">
+            <h1 class="page-title">Order History</h1>
+            <p class="page-sub">All past transactions — most recent first</p>
+
+            <!-- Filter bar -->
+            <div class="filter-bar">
+                <span style="font-size:16px;color:var(--text-4)">🔍</span>
+                <input id="hist-search" class="filter-search" type="text" placeholder="Search by customer or order ID…"/>
+                <div class="filter-divider"></div>
+                <label>From</label>
+                <input id="hist-from" class="filter-input" type="date"/>
+                <label>To</label>
+                <input id="hist-to" class="filter-input" type="date"/>
+                <button id="hist-filter-btn" class="btn btn-pos-primary rounded-2 px-3 py-2">Filter</button>
+                <button id="hist-clear-btn"  class="btn btn-pos-ghost rounded-2 px-3 py-2">Clear</button>
+            </div>
+
+            <div class="pos-card">
+                <div class="table-responsive">
+                    <table class="pos-table">
+                        <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Date &amp; Time</th>
+                            <th>Items</th>
+                            <th class="text-end">Total</th>
+                        </tr>
+                        </thead>
+                        <tbody id="history-tbody"></tbody>
+                    </table>
+                </div>
+                <div class="pagination-bar">
+                    <span id="hist-count" class="text-muted"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════
+     MODALS (shared across all views)
+════════════════════════════════════════════════════════════ -->
+
+<!-- ── Add/Edit Customer Modal ──────────────────────────────── -->
+<div class="modal fade" id="modal-customer" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="pos-card-header">
+                <span id="cust-modal-title">Add Customer</span>
+                <button class="modal-close-x" data-bs-dismiss="modal">✕</button>
+            </div>
+            <form id="cust-form" novalidate>
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <label class="pos-label">Customer ID</label>
+                            <input id="cust-id-display" class="pos-input readonly" readonly/>
+                        </div>
+                        <div class="col-6">
+                            <label class="pos-label" for="cust-name">Full Name <span class="req">*</span></label>
+                            <input id="cust-name" class="pos-input" placeholder="Enter full name" required/>
+                            <div class="invalid-feedback">Name is required.</div>
+                        </div>
+                        <div class="col-6">
+                            <label class="pos-label" for="cust-contact">Contact Number <span class="req">*</span></label>
+                            <input id="cust-contact" class="pos-input" placeholder="+94 7x xxx xxxx" required/>
+                            <div class="invalid-feedback">Enter a valid contact number.</div>
+                        </div>
+                        <div class="col-6">
+                            <label class="pos-label" for="cust-address">Address</label>
+                            <input id="cust-address" class="pos-input" placeholder="Street, City, Country"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-pos-ghost rounded-2" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-pos-primary rounded-2">Save Customer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ── Add/Edit Item Modal ───────────────────────────────────── -->
+<div class="modal fade" id="modal-item" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="pos-card-header green">
+                <span id="item-modal-title">Add Item</span>
+                <button class="modal-close-x" data-bs-dismiss="modal">✕</button>
+            </div>
+            <form id="item-form" novalidate>
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <label class="pos-label" for="item-code">Item Code <span class="req">*</span></label>
+                            <input id="item-code" class="pos-input" placeholder="ITM-001" required/>
+                            <div id="item-code-feedback" class="invalid-feedback">Required / already exists.</div>
+                        </div>
+                        <div class="col-6">
+                            <label class="pos-label" for="item-name">Item Name <span class="req">*</span></label>
+                            <input id="item-name" class="pos-input" placeholder="Enter item name" required/>
+                            <div class="invalid-feedback">Name is required.</div>
+                        </div>
+                        <div class="col-6">
+                            <label class="pos-label" for="item-price">Unit Price (Rs.) <span class="req">*</span></label>
+                            <input id="item-price" type="number" min="0.01" step="0.01" class="pos-input" placeholder="0.00" required/>
+                            <div class="invalid-feedback">Enter a valid price.</div>
+                        </div>
+                        <div class="col-6">
+                            <label class="pos-label" for="item-qty">Quantity on Hand <span class="req">*</span></label>
+                            <input id="item-qty" type="number" min="0" class="pos-input" placeholder="0" required/>
+                            <div class="invalid-feedback">Enter a valid quantity.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-pos-ghost rounded-2" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-pos-teal rounded-2">Save Item</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ── Order Confirmation Modal ──────────────────────────────── -->
+<div class="modal fade" id="modal-confirmation" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="pos-card-header teal">
+                <span>✓ &nbsp;Order Confirmed!</span>
+            </div>
+            <div class="modal-body">
+                <div class="row g-2 mb-3">
+                    <div class="col-6"><small style="color:var(--text-3)">Order ID</small><br><strong id="conf-order-id"></strong></div>
+                    <div class="col-6"><small style="color:var(--text-3)">Customer</small><br><strong id="conf-customer"></strong></div>
+                    <div class="col-12"><small style="color:var(--text-3)">Date &amp; Time</small><br><span id="conf-date" style="color:var(--text-2)"></span></div>
+                </div>
+                <hr style="border-color:var(--border)"/>
+                <table class="receipt-table">
+                    <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th class="text-center">Qty</th>
+                        <th class="text-end">Subtotal</th>
+                    </tr>
+                    </thead>
+                    <tbody id="conf-items-tbody"></tbody>
+                </table>
+                <div class="receipt-total mt-2">
+                    <div class="receipt-total-label">Total</div>
+                    <div class="receipt-total-value" id="conf-total"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-print-receipt" class="btn btn-pos-ghost rounded-2">🖨 Print Receipt</button>
+                <button id="btn-new-order-after" class="btn btn-pos-primary rounded-2">New Order →</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── Generic Confirm Dialog ────────────────────────────────── -->
+<div class="modal fade" id="modal-confirm" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="pos-card-header" style="background:var(--danger)">
+                <span>Confirm Delete</span>
+                <button class="modal-close-x" data-bs-dismiss="modal">✕</button>
+            </div>
+            <div class="modal-body">
+                <p id="confirm-msg" class="mb-0"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-pos-ghost rounded-2" data-bs-dismiss="modal">Cancel</button>
+                <button id="btn-confirm-ok" type="button" class="btn btn-pos-danger rounded-2">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── Scripts ───────────────────────────────────────────────── -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+
+<!-- Wire up all logout buttons to the single handler -->
+<script>
+    $(function() {
+        $('#btn-logout-cust, #btn-logout-items, #btn-logout-orders, #btn-logout-hist').on('click', function() {
+            $('#btn-logout').trigger('click');
+        });
+    });
+</script>
 
 </body>
 </html>
