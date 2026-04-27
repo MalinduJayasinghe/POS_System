@@ -171,7 +171,7 @@ function renderDashboard() {
     const revenue = todayOrders.reduce((s,o) => s+o.total, 0);
     const inStock = items.reduce((s,i) => s+(i.qty>0?1:0), 0);
 
-    $('#dash-customers').text(customers.length);
+    $('#customers').text(customers.length);
     $('#dash-items').text(inStock);
     $('#dash-orders').text(todayOrders.length);
     $('#dash-revenue').text(fmtMoney(revenue));
