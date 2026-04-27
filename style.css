@@ -246,12 +246,12 @@ h1,h2,h3,h4,h5,h6 {
 .pos-card-header.teal .modal-close-x { color: var(--dark-blue); }
 
 /* ── Buttons ────────────────────────────────────────────────── */
-.btn-pos-primary { background: var(--dark-blue); color: var(--white); border: none; font-weight: 600; }
-.btn-pos-primary:hover { background: var(--dark-blue-mid); color: var(--white); }
+.btn-primary { background: var(--dark-blue); color: var(--white); border: none; font-weight: 600; }
+.btn-primary:hover { background: var(--dark-blue-mid); color: var(--white); }
 .btn-pos-teal    { background: var(--teal); color: var(--white); border: none; font-weight: 600; }
 .btn-pos-teal:hover { background: var(--teal-dim); color: var(--white); }
-.btn-pos-gold    { background: var(--gold); color: var(--dark-blue); border: none; font-weight: 600; }
-.btn-pos-gold:hover { background: var(--gold-dim); color: var(--white); }
+.btn-gold    { background: var(--gold); color: var(--dark-blue); border: none; font-weight: 600; }
+.btn-gold:hover { background: var(--gold-dim); color: var(--white); }
 .btn-pos-ghost   { background: var(--white); color: var(--text-2); border: 1px solid var(--border-mid); font-weight: 500; }
 .btn-pos-ghost:hover { background: var(--surface); color: var(--text-1); }
 .btn-pos-danger  { background: var(--danger); color: var(--white); border: none; font-weight: 600; }

@@ -652,7 +652,7 @@ $(function() {
     });
 
     // Quick-access dashboard buttons
-    $('#dash-btn-customer').on('click', function() { showView('view-customers'); setTimeout(()=>$('#btn-add-customer').trigger('click'),100); });
-    $('#dash-btn-item').on('click', function() { showView('view-items'); setTimeout(()=>$('#btn-add-item').trigger('click'),100); });
-    $('#dash-btn-order').on('click', function() { showView('view-orders'); });
+    $('#btn-customer').on('click', function() { showView('view-customers'); setTimeout(()=>$('#btn-add-customer').trigger('click'),100); });
+    $('#btn-item').on('click', function() { showView('view-items'); setTimeout(()=>$('#btn-add-item').trigger('click'),100); });
+    $('#btn-order').on('click', function() { showView('view-orders'); });
 });
