@@ -651,7 +651,8 @@ $(function() {
         showView($(this).data('view'));
     });
 
-    // Quick-access dashboard buttons
+    // ---------------- Quick Access ----------------
+
     $('#btn-customer').on('click', function() { showView('view-customers'); setTimeout(()=>$('#btn-add-customer').trigger('click'),100); });
     $('#btn-item').on('click', function() { showView('view-items'); setTimeout(()=>$('#btn-add-item').trigger('click'),100); });
     $('#btn-order').on('click', function() { showView('view-orders'); });

@@ -258,20 +258,20 @@ h1,h2,h3,h4,h5,h6 {
 .btn-pos-danger:hover { opacity: .85; color: var(--white); }
 
 /* ── Table ──────────────────────────────────────────────────── */
-.pos-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 0; }
-.pos-table thead tr { background: var(--dark-blue); }
-.pos-table thead th {
+.table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 0; }
+.table thead tr { background: var(--dark-blue); }
+.table thead th {
     font-family: var(--font-head); font-size: 11px; font-weight: 700;
     letter-spacing: .06em; text-transform: uppercase; color: var(--white);
     padding: 11px 14px; text-align: left; border: none;
 }
-.pos-table tbody tr { border-bottom: 1px solid var(--border); transition: background .12s; }
-.pos-table tbody tr:nth-child(even) { background: var(--alt-row); }
-.pos-table tbody tr:hover { background: #EFF6FF; }
-.pos-table tbody td { padding: 11px 14px; color: var(--text-2); vertical-align: middle; border: none; }
-.pos-table tbody td.id-cell { font-family: var(--font-head); font-size: 12px; font-weight: 700; color: var(--dark-blue-light); }
-.pos-table tbody tr.oos-row { background: var(--oos-bg) !important; }
-.pos-table tbody tr.oos-row td { color: var(--oos-text); }
+.table tbody tr { border-bottom: 1px solid var(--border); transition: background .12s; }
+.table tbody tr:nth-child(even) { background: var(--alt-row); }
+.table tbody tr:hover { background: #EFF6FF; }
+.table tbody td { padding: 11px 14px; color: var(--text-2); vertical-align: middle; border: none; }
+.table tbody td.id-cell { font-family: var(--font-head); font-size: 12px; font-weight: 700; color: var(--dark-blue-light); }
+.table tbody tr.oos-row { background: var(--oos-bg) !important; }
+.table tbody tr.oos-row td { color: var(--oos-text); }
 
 /* ── Badges ─────────────────────────────────────────────────── */
 .pos-badge {
