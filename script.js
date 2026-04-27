@@ -240,11 +240,11 @@ $('#cust-search').on('input', function() { renderCustomers($(this).val()); });
 
 $('#btn-add-customer').on('click', function() {
     editingCustomerId = null;
-    $('#cust-modal-title').text('Add Customer');
-    $('#cust-id-display').val(nextCustomerId());
-    $('#cust-name').val(''); $('#cust-contact').val(''); $('#cust-address').val('');
-    $('#cust-form')[0].reset();
-    $('#cust-form .is-invalid').removeClass('is-invalid');
+    $('#cus-modal-title').text('Add Customer');
+    $('#cus-id-display').val(nextCustomerId());
+    $('#cus-name').val(''); $('#cus-contact').val(''); $('#cus-address').val('');
+    $('#cus-form')[0].reset();
+    $('#cus-form .is-invalid').removeClass('is-invalid');
     new bootstrap.Modal('#modal-customer').show();
 });
 
@@ -252,12 +252,12 @@ window.editCustomer = function(id) {
     const c = DB.get('customers').find(x => x.id===id);
     if (!c) return;
     editingCustomerId = id;
-    $('#cust-modal-title').text('Edit Customer');
-    $('#cust-id-display').val(c.id);
-    $('#cust-name').val(c.name);
-    $('#cust-contact').val(c.contact);
-    $('#cust-address').val(c.address||'');
-    $('#cust-form .is-invalid').removeClass('is-invalid');
+    $('#cus-modal-title').text('Edit Customer');
+    $('#cus-id-display').val(c.id);
+    $('#cus-name').val(c.name);
+    $('#cus-contact').val(c.contact);
+    $('#cus-address').val(c.address||'');
+    $('#cus-form .is-invalid').removeClass('is-invalid');
     new bootstrap.Modal('#modal-customer').show();
 };
 
@@ -277,17 +277,17 @@ window.deleteCustomer = function(id) {
     new bootstrap.Modal('#modal-confirm').show();
 };
 
-$('#cust-form').on('submit', function(e) {
+$('#cus-form').on('submit', function(e) {
     e.preventDefault();
-    const name    = $('#cust-name').val().trim();
-    const contact = $('#cust-contact').val().trim();
-    const address = $('#cust-address').val().trim();
+    const name    = $('#cus-name').val().trim();
+    const contact = $('#cus-contact').val().trim();
+    const address = $('#cus-address').val().trim();
     let valid = true;
 
-    $('#cust-name').toggleClass('is-invalid', !name);
+    $('#cus-name').toggleClass('is-invalid', !name);
     if (!contact || !/^\+?[\d\s\-]{7,15}$/.test(contact)) {
-        $('#cust-contact').addClass('is-invalid'); valid = false;
-    } else { $('#cust-contact').removeClass('is-invalid'); }
+        $('#cus-contact').addClass('is-invalid'); valid = false;
+    } else { $('#cus-contact').removeClass('is-invalid'); }
     if (!name) valid = false;
     if (!valid) return;
 
