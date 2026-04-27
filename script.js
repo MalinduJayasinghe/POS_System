@@ -1,5 +1,12 @@
 'use strict';
 
+// Logout buttons in each menu
+$(function() {
+    $('#btn-cus-logout, #btn-logout-items, #btn-logout-orders, #btn-logout-hist').on('click', function() {
+        $('#btn-logout').trigger('click');
+    });
+});
+
 // ── Credentials ─────────────────────────────────────────────
 const CREDENTIALS = { username: 'admin', password: 'admin123' };
 
