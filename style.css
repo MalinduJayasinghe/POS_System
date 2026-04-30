@@ -10,7 +10,7 @@
     --gold:        #F0B429;
     --dark-gold:   #C88F00;
     --red:         #E53E3E;
-    --success:     #38A169;
+    --green:     #38A169;
     --light-white: #F7F9FC;
     --white:       #FFFFFF;
     --border:      #E2E8F0;
@@ -253,7 +253,8 @@ h1,h2,h3,h4,h5,h6 {
 .stat-card {
     background: var(--white);
     border: 1px solid var(--border);
-    border-radius: var(--radius-large); padding: 20px;
+    border-radius: var(--radius-large);
+    padding: 20px;
     box-shadow: var(--shadow-sm);
     position: relative;
     overflow: hidden;
@@ -332,7 +333,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .card-header.green{
-    background: var(--success);
+    background: var(--green);
 }
 
 .card-header.gold{
@@ -424,7 +425,7 @@ h1,h2,h3,h4,h5,h6 {
     font-weight: 600;
 }
 
-/* ── Table ──────────────────────────────────────────────────── */
+/* -------------------------------- Tables --------------------------------*/
 .table {
     width: 100%;
     border-collapse: collapse;
@@ -483,7 +484,8 @@ h1,h2,h3,h4,h5,h6 {
     color: var(--red);
 }
 
-/* ── Badges ─────────────────────────────────────────────────── */
+/* -------------------------------- Badges -------------------------------- */
+
 .pos-badge {
     display: inline-flex; align-items: center;
     padding: 3px 10px; border-radius: 99px;
@@ -492,17 +494,14 @@ h1,h2,h3,h4,h5,h6 {
 
 .badge-success  {
     background: #F0FFF4;
-    color: var(--success);
+    color: var(--green);
+    background: var(--green);
 }
 
 .badge-danger   {
     background: #FFF5F5;
     color: var(--red);
-}
-
-.badge-gold     {
-    background: #FFFBEB;
-    color: var(--dark-gold);
+    border: 1px solid var(--red);
 }
 
 .badge-low-stock      {
@@ -514,9 +513,10 @@ h1,h2,h3,h4,h5,h6 {
 .badge-blue     {
     background: #EBF8FF;
     color: var(--light-blue);
+    border: 1px solid var(--blue);
 }
 
-/* ── Form ───────────────────────────────────────────────────── */
+/* -------------------------------- Form -------------------------------- */
 .label {
     font-size: 12px;
     font-weight: 600;
