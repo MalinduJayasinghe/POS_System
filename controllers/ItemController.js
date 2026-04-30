@@ -33,7 +33,7 @@ const renderItems = (searchTerm) => {
 
         // Status badge
         const statusBadge = isOutOfStock
-            ? `<span class="pos-badge badge-oos">Out of Stock</span>`
+            ? `<span class="pos-badge badge-danger">Out of Stock</span>`
             : `<span class="pos-badge badge-success">In Stock</span>`;
 
         tbody.append(`
