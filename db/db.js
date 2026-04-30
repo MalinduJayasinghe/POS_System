@@ -9,7 +9,7 @@ let customer_db = [
 let item_db = [
     { id: 'ITM-001', name: 'Wireless Mouse', price: 2000, qty: 45 },
     { id: 'ITM-002', name: 'USB-C Hub', price: 500,  qty: 12 },
-    { id: 'ITM-003', name: 'Mechanical Keyboard', price: 6000, qty: 0},
+    { id: 'ITM-003', name: 'Keyboard', price: 6000, qty: 0},
 ];
 
 let order_db = [
