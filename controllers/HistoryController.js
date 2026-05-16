@@ -39,7 +39,7 @@ const renderHistory = (searchTerm, fromDate, toDate) => {
     list.forEach(function (order) {
         // Show up to 2 item badges per row, then a "+N more" badge if there are extras
         const badges = order.items.slice(0, 2).map(i =>
-            `<span class="pos-badge badge-blue me-1">${escapeHtml(i.name)} ×${i.qty}</span>`
+            `<span class="pos-badge badge-blue me-1">${(i.name)} ×${i.qty}</span>`
         ).join('');
 
         const extraBadge = order.items.length > 2
@@ -49,8 +49,8 @@ const renderHistory = (searchTerm, fromDate, toDate) => {
         tbody.append(`
             <tr>
                 <td class="id-cell">${order.id}</td>
-                <td><strong>${escapeHtml(order.customerName)}</strong></td>
-                <td style="color:var(--text-3)">${formatDateTime(order.date)}</td>
+                <td><strong>${(order.customerName)}</strong></td>
+                <td style="color:var(--text-dim-blue)">${formatDateTime(order.date)}</td>
                 <td>${badges}${extraBadge}</td>
                 <td class="text-end">
                     <strong style="font-family:var(--font-head)">${formatMoney(order.total)}</strong>

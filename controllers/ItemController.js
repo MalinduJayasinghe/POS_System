@@ -26,12 +26,10 @@ const renderItems = (searchTerm) => {
     list.forEach(function (item) {
         const isOutOfStock = item.qty === 0;
 
-        // Quantity cell — styled differently when out of stock
         const qtyCell = isOutOfStock
-            ? `<span style="color:var(--oos-text); font-weight:600">${item.qty} units</span>`
+            ? `<span style="color:var(--red); font-weight:600">${item.qty} units</span>`
             : item.qty + ' units';
 
-        // Status badge
         const statusBadge = isOutOfStock
             ? `<span class="pos-badge badge-danger">Out of Stock</span>`
             : `<span class="pos-badge badge-success">In Stock</span>`;
@@ -39,7 +37,7 @@ const renderItems = (searchTerm) => {
         tbody.append(`
             <tr class="${isOutOfStock ? 'oos-row' : ''}">
                 <td class="id-cell">${item.id}</td>
-                <td><strong>${escapeHtml(item.name)}</strong></td>
+                <td><strong>${(item.name)}</strong></td>
                 <td>${formatMoney(item.price)}</td>
                 <td>${qtyCell}</td>
                 <td>${statusBadge}</td>
@@ -82,7 +80,7 @@ window.openEditItem = function (id) {
 
     editingItemId = id;
     $('#item-modal-title').text('Edit Item');
-    $('#item-code').val(item.id).prop('readonly', true); // item code cannot be changed after creation
+    $('#item-code').val(item.id).prop('readonly', true);
     $('#item-name').val(item.name);
     $('#item-price').val(item.price);
     $('#item-qty').val(item.qty);
@@ -100,7 +98,7 @@ window.openDeleteItem = function (id) {
     const usedInOrders = getOrders().some(o => o.items.some(i => i.code === id));
     const warningText  = usedInOrders ? '<br><small class="text-warning">⚠ This item appears in past orders.</small>' : '';
 
-    $('#confirm-msg').html(`Delete item <strong>${escapeHtml(item.name)}</strong>?${warningText}`);
+    $('#confirm-msg').html(`Delete item <strong>${(item.name)}</strong>?${warningText}`);
 
     // .off('click') prevents duplicate handlers stacking up on repeated opens
     $('#btn-confirm-ok').off('click').on('click', function () {

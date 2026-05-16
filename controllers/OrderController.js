@@ -11,7 +11,7 @@ const formatDateTime = (isoString) => {
 //  Holds the current order -------------------------
 let currentOrder = {
     customerId: null,
-    items: []    // array of { code, name, price, qty, subtotal }
+    items: []
 };
 
 
@@ -22,21 +22,20 @@ const renderNewOrder = () => {
     const customerSelect = $('#order-customer-select');
     customerSelect.html('<option value="">Choose a customer…</option>');
     getCustomers().forEach(function (c) {
-        customerSelect.append(`<option value="${c.id}">${c.id} — ${escapeHtml(c.name)}</option>`);
+        customerSelect.append(`<option value="${c.id}">${c.id} — ${(c.name)}</option>`);
     });
 
-    // Re-select the previously chosen customer if one exists
     if (currentOrder.customerId) {
         customerSelect.val(currentOrder.customerId);
     }
 
-    // Fill the item dropdown — only show items with stock available
+    // Fill the items with only items that have stock available
     const itemSelect = $('#order-item-select');
     itemSelect.html('<option value="">Select item…</option>');
     getItems().filter(i => i.qty > 0).forEach(function (i) {
         itemSelect.append(`
             <option value="${i.id}" data-price="${i.price}" data-qty="${i.qty}">
-                ${i.id} — ${escapeHtml(i.name)}
+                ${i.id} — ${(i.name)}
             </option>`);
     });
 
@@ -121,7 +120,7 @@ const renderOrderItemsTable = () => {
         grandTotal += item.subtotal;
         tbody.append(`
             <tr>
-                <td><strong>${escapeHtml(item.name)}</strong></td>
+                <td><strong>${(item.name)}</strong></td>
                 <td>${formatMoney(item.price)}</td>
                 <td class="text-center">×${item.qty}</td>
                 <td><strong>${formatMoney(item.subtotal)}</strong></td>
@@ -170,18 +169,14 @@ $('#btn-place-order').on('click', function () {
     const orderId      = nextOrderId();
     const total        = currentOrder.items.reduce((sum, i) => sum + i.subtotal, 0);
 
-    // Save the order via the model
     const savedOrder = addOrder(orderId, customerId, customerName, currentOrder.items, total);
 
-    // Reduce stock for every item that was ordered
     currentOrder.items.forEach(function (orderedItem) {
         decrementStock(orderedItem.code, orderedItem.qty);
     });
 
-    // Show the confirmation receipt modal
     renderConfirmationModal(savedOrder);
 
-    // Reset the order form ready for the next transaction
     currentOrder = { customerId: null, items: [] };
 });
 
@@ -197,7 +192,7 @@ const renderConfirmationModal = (order) => {
     order.items.forEach(function (item) {
         tbody.append(`
             <tr>
-                <td>${escapeHtml(item.name)}</td>
+                <td>${(item.name)}</td>
                 <td class="text-center">×${item.qty}</td>
                 <td class="text-end"><strong>${formatMoney(item.subtotal)}</strong></td>
             </tr>`);

@@ -26,9 +26,9 @@ const renderCustomers = (searchTerm) => {
         tbody.append(`
             <tr>
                 <td class="id-cell">${c.id}</td>
-                <td><strong>${escapeHtml(c.name)}</strong></td>
-                <td>${escapeHtml(c.contact)}</td>
-                <td>${escapeHtml(c.address || '—')}</td>
+                <td><strong>${(c.name)}</strong></td>
+                <td>${(c.contact)}</td>
+                <td>${(c.address || '—')}</td>
                 <td>
                     <div class="d-flex gap-2">
                         <button class="btn btn-sm btn-transparent rounded"
@@ -88,7 +88,7 @@ window.openDeleteCustomer = function (id) {
         warningText = `<br><small class="text-warning">⚠ This customer has ${customerOrders.length} order(s). They will remain in history.</small>`;
     }
 
-    $('#confirm-msg').html(`Delete customer <strong>${escapeHtml(customer.name)}</strong>?${warningText}`);
+    $('#confirm-msg').html(`Delete customer <strong>${(customer.name)}</strong>?${warningText}`);
 
     $('#btn-confirm-ok').off('click').on('click', function () {
         deleteCustomer(id);

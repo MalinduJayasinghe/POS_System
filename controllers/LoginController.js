@@ -29,6 +29,8 @@ let loggedInUser = null;
 $('#btn-logout').on('click', function () {
     loggedInUser  = null;
     currentOrder  = { customerId: null, items: [] };
+    $('#login-username').val('');
+    $('#login-password').val('');
     showView('login');
 });
 

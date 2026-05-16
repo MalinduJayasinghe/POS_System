@@ -2,27 +2,26 @@
 
 /*---------------------- Colors ----------------------*/
 :root {
-    --dark-blue:   #0F2645;
-    --blue:        #1B4F72;
-    --light-blue:  #2E86C1;
-    --teal:        #00C2A8;
-    --dark-teal:   #00957F;
-    --gold:        #F0B429;
-    --dark-gold:   #C88F00;
-    --red:         #E53E3E;
-    --green:       #38A169;
+    --dark-blue: #0F2645;
+    --blue: #1B4F72;
+    --light-blue: #2E86C1;
+    --teal: #00C2A8;
+    --dark-teal: #00957F;
+    --gold: #F0B429;
+    --dark-gold: #C88F00;
+    --red: #E53E3E;
+    --green: #38A169;
     --light-white: #F7F9FC;
-    --white:       #FFFFFF;
-    --dark-white:  #CBD5E0;
-    --text-1:      #0F2645;
-    --text-2:      #4A5568;
-    --text-3:      #718096;
-    --text-4:      #A0AEC0;
-    --alt-row:     #FAFBFD;
-    --warn-text:   #92600A;
+    --white: #FFFFFF;
+    --dark-white: #CBD5E0;
+    --text-blue: #0F2645;
+    --text-medium-blue: #4A5568;
+    --text-dim-blue: #718096;
+    --text-blue-white: #A0AEC0;
+    --row: #FAFBFD;
+    --warn-text: #92600A;
 
     --shadow-sm: 0 1px 3px rgba(15,38,69,.08), 0 1px 2px rgba(15,38,69,.04);
-    --shadow-md: 0 4px 16px rgba(15,38,69,.10), 0 2px 6px rgba(15,38,69,.06);
     --shadow-lg: 0 12px 40px rgba(15,38,69,.14), 0 4px 12px rgba(15,38,69,.08);
 
     --font-head: 'Syne', sans-serif;
@@ -45,7 +44,7 @@
 body {
     font-family: var(--font-body);
     background: var(--light-white);
-    color: var(--text-1);
+    color: var(--text-blue);
     margin: 0;
     font-size: 14px;
 }
@@ -117,7 +116,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .login-sub {
-    font-size: 13px; color: var(--text-3);
+    font-size: 13px; color: var(--text-dim-blue);
     text-align: center; margin-bottom: 28px;
 }
 
@@ -237,7 +236,7 @@ h1,h2,h3,h4,h5,h6 {
 
 .page-sub {
     font-size: 13px;
-    color: var(--text-3);
+    color: var(--text-dim-blue);
     margin-bottom: 24px;
 }
 
@@ -247,7 +246,7 @@ h1,h2,h3,h4,h5,h6 {
     font-weight: 700;
     letter-spacing: .08em;
     text-transform: uppercase;
-    color: var(--text-3);
+    color: var(--text-dim-blue);
     margin-bottom: 12px;
     display: block;
 }
@@ -310,7 +309,7 @@ h1,h2,h3,h4,h5,h6 {
 
 .stat-label {
     font-size: 12px;
-    color: var(--text-3);
+    color: var(--text-dim-blue);
 }
 
 /*-------------------- Card --------------------*/
@@ -411,13 +410,13 @@ h1,h2,h3,h4,h5,h6 {
 
 .btn-transparent {
     background: var(--white);
-    color: var(--text-2);
+    color: var(--text-medium-blue);
     border: 1px solid var(--dark-white);
     font-weight: 500;
 }
 
 .btn-transparent:hover {
-    background: var(--text-1);
+    background: var(--text-blue);
     color: var(--light-white);
 }
 
@@ -458,7 +457,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .table tbody tr:nth-child(even) {
-    background: var(--alt-row);
+    background: var(--row);
 }
 
 .table tbody tr:hover {
@@ -467,7 +466,7 @@ h1,h2,h3,h4,h5,h6 {
 
 .table tbody td {
     padding: 11px 14px;
-    color: var(--text-2);
+    color: var(--text-medium-blue);
     vertical-align: middle;
     border: none;
 }
@@ -517,7 +516,7 @@ h1,h2,h3,h4,h5,h6 {
 .label {
     font-size: 12px;
     font-weight: 600;
-    color: var(--text-2);
+    color: var(--text-medium-blue);
     margin-bottom: 5px;
     display: block;
 }
@@ -530,7 +529,7 @@ h1,h2,h3,h4,h5,h6 {
 .input {
     font-family: var(--font-body);
     font-size: 13px;
-    color: var(--text-1);
+    color: var(--text-blue);
     background: var(--white);
     border: 1.5px solid var(--dark-white);
     border-radius: var(--radius-small);
@@ -545,18 +544,18 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .input::placeholder {
-    color: var(--text-4);
+    color: var(--text-blue-white);
 }
 
 .input.readonly {
     background: var(--light-white);
-    color: var(--text-3);
+    color: var(--text-dim-blue);
 }
 
 .select {
     font-family: var(--font-body);
     font-size: 13px;
-    color: var(--text-1);
+    color: var(--text-blue);
     background: var(--light-white);
     border: 1.5px solid var(--dark-white);
     border-radius: var(--radius-small);
@@ -588,13 +587,13 @@ h1,h2,h3,h4,h5,h6 {
     outline: none;
     font-family: var(--font-body);
     font-size: 13px;
-    color: var(--text-2);
+    color: var(--text-medium-blue);
     background: transparent;
     width: 100%;
 }
 
 .search-bar input::placeholder {
-    color: var(--text-4);
+    color: var(--text-blue-white);
 }
 
 /* -------------------------------- Quick access buttons -------------------------------- */
@@ -619,7 +618,7 @@ h1,h2,h3,h4,h5,h6 {
     border-radius: var(--radius-small);
     padding: 6px 14px;
     font-size: 12px;
-    color: var(--text-3);
+    color: var(--text-dim-blue);
     font-weight: 500;
     white-space: nowrap;
 }
@@ -630,7 +629,7 @@ h1,h2,h3,h4,h5,h6 {
     padding: 9px 14px;
     font-size: 13px;
     font-weight: 600;
-    color: var(--text-2);
+    color: var(--text-medium-blue);
     white-space: nowrap;
 }
 
@@ -685,7 +684,7 @@ h1,h2,h3,h4,h5,h6 {
 .filter-bar label {
     font-size: 12px;
     font-weight: 600;
-    color: var(--text-3);
+    color: var(--text-dim-blue);
     white-space: nowrap;
 }
 
@@ -698,7 +697,7 @@ h1,h2,h3,h4,h5,h6 {
 .filter-input {
     font-family: var(--font-body);
     font-size: 13px;
-    color: var(--text-2);
+    color: var(--text-medium-blue);
     background: var(--light-white);
     border: 1.5px solid var(--dark-white);
     border-radius: var(--radius-small);
@@ -710,7 +709,7 @@ h1,h2,h3,h4,h5,h6 {
 .filter-search {
     font-family: var(--font-body);
     font-size: 13px;
-    color: var(--text-2);
+    color: var(--text-medium-blue);
     background: var(--light-white);
     border: 1.5px solid var(--dark-white);
     border-radius: var(--radius-small);
@@ -723,7 +722,7 @@ h1,h2,h3,h4,h5,h6 {
 /* -------------------------------- Pagination -------------------------------- */
 .pagination-bar {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 14px 20px; font-size: 12px; color: var(--text-3);
+    padding: 14px 20px; font-size: 12px; color: var(--text-dim-blue);
     border-top: 1px solid var(--dark-white);
 }
 
@@ -741,14 +740,14 @@ h1,h2,h3,h4,h5,h6 {
     font-weight: 700;
     letter-spacing: .05em;
     text-transform: uppercase;
-    color: var(--text-3);
+    color: var(--text-dim-blue);
     text-align: left;
 }
 
 .receipt-table tbody td {
     padding: 10px 12px;
     border-bottom: 1px solid var(--dark-white);
-    color: var(--text-2);
+    color: var(--text-medium-blue);
 }
 
 .receipt-total {
@@ -804,7 +803,7 @@ h1,h2,h3,h4,h5,h6 {
 .empty-state {
     text-align: center;
     padding: 48px 20px;
-    color: var(--text-4);
+    color: var(--text-blue-white);
 }
 
 .empty-state svg {

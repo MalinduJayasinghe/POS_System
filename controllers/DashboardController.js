@@ -13,16 +13,6 @@ const formatDateShort = (isoString) => {
 };
 
 
-// ── Escape HTML special characters to prevent XSS ───────────────────
-const escapeHtml = (text) => {
-    return String(text)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
-};
-
-
 // ------------------------ Dashboard ------------------------
 const renderDashboard = () => {
 
@@ -58,7 +48,7 @@ const renderDashboard = () => {
         tbody.append(`
             <tr>
                 <td class="id-cell">${order.id}</td>
-                <td>${escapeHtml(order.customerName)}</td>
+                <td>${(order.customerName)}</td>
                 <td>${formatDateShort(order.date)}</td>
                 <td><strong>${formatMoney(order.total)}</strong></td>
                 <td><span class="pos-badge badge-success">Completed</span></td>
