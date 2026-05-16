@@ -5,10 +5,8 @@ const renderHistory = (searchTerm, fromDate, toDate) => {
     fromDate   = fromDate   || '';
     toDate     = toDate     || '';
 
-    // Start with all orders, sorted newest first
     let list = [...getOrders()].sort((a, b) => new Date(b.date) - new Date(a.date));
 
-    // Filter by customer name or order ID
     if (searchTerm) {
         const q = searchTerm.toLowerCase();
         list = list.filter(o =>
@@ -16,21 +14,18 @@ const renderHistory = (searchTerm, fromDate, toDate) => {
         );
     }
 
-    // Filter by from-date (start of that day)
     if (fromDate) {
         const from = new Date(fromDate);
         from.setHours(0, 0, 0, 0);
         list = list.filter(o => new Date(o.date) >= from);
     }
 
-    // Filter by to-date (end of that day)
     if (toDate) {
         const to = new Date(toDate);
         to.setHours(23, 59, 59, 999);
         list = list.filter(o => new Date(o.date) <= to);
     }
 
-    // Update the result count label
     $('#hist-count').text(`Showing ${list.length} order${list.length !== 1 ? 's' : ''}`);
 
     const tbody = $('#history-tbody');

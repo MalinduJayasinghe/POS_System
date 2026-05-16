@@ -1,5 +1,8 @@
 
-const CREDENTIALS = { username: 'admin', password: '1234' };
+const CREDENTIALS = {
+    username: 'admin',
+    password: '1234'
+};
 
 let loggedInUser = null;
 
@@ -50,8 +53,7 @@ const showToast = (message, type = 'success') => {
         <div id="${toastId}" class="toast align-items-center ${bgClass} border-0" role="alert" style="min-width:260px; border-radius:10px;">
             <div class="d-flex">
                 <div class="toast-body fw-semibold">${icon} ${message}</div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto"
-                        data-bs-dismiss="toast"></button>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
             </div>
         </div>`;
 

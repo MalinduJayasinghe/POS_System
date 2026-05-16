@@ -6,7 +6,6 @@ let editingCustomerId = null;
 const renderCustomers = (searchTerm) => {
     searchTerm = searchTerm || '';
 
-    // Filter by name or ID if a search term was provided
     let list = getCustomers();
     if (searchTerm) {
         const q = searchTerm.toLowerCase();
@@ -83,7 +82,6 @@ window.openDeleteCustomer = function (id) {
     const customer = getCustomerById(id);
     if (!customer) return;
 
-    // Warn the user if this customer has existing orders
     const customerOrders = getOrders().filter(o => o.customerId === id);
     let warningText = '';
     if (customerOrders.length > 0) {
@@ -92,7 +90,6 @@ window.openDeleteCustomer = function (id) {
 
     $('#confirm-msg').html(`Delete customer <strong>${escapeHtml(customer.name)}</strong>?${warningText}`);
 
-    // .off('click') prevents duplicate handlers stacking up on repeated opens
     $('#btn-confirm-ok').off('click').on('click', function () {
         deleteCustomer(id);
         bootstrap.Modal.getInstance('#modal-confirm').hide();
@@ -112,7 +109,6 @@ $('#cus-form').on('submit', function (e) {
     const contact = $('#cus-contact').val().trim();
     const address = $('#cus-address').val().trim();
 
-    // Validate name
     let isValid = true;
     if (!name) {
         $('#cus-name').addClass('is-invalid');
@@ -121,7 +117,6 @@ $('#cus-form').on('submit', function (e) {
         $('#cus-name').removeClass('is-invalid');
     }
 
-    // Validate phone number using check_phone()
     if (!contact || !check_phone(contact)) {
         $('#cus-contact').addClass('is-invalid');
         isValid = false;

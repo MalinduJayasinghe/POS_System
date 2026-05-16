@@ -14,7 +14,6 @@ const formatDateShort = (isoString) => {
 
 
 // ── Escape HTML special characters to prevent XSS ───────────────────
-// Turns <script> into &lt;script&gt; so user input renders as text not code
 const escapeHtml = (text) => {
     return String(text)
         .replace(/&/g, '&amp;')
@@ -34,18 +33,15 @@ const renderDashboard = () => {
     const todayRevenue = todayOrders.reduce((sum, o) => sum + o.total, 0);
     const itemsInStock = getItems().filter(i => i.qty > 0).length;
 
-    // Update the four stat cards
     $('#customers').text(getCustomers().length);
     $('#items').text(itemsInStock);
     $('#orders').text(todayOrders.length);
     $('#revenue').text(formatMoney(todayRevenue));
 
-    // Show today's date below the welcome heading
     $('#date').text(new Date().toLocaleDateString('en-US', {
         weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
     }));
 
-    // Show the 5 most recent orders in the table (newest first)
     const recentOrders = [...getOrders()]
         .sort((a, b) => new Date(b.date) - new Date(a.date))
         .slice(0, 5);
@@ -75,7 +71,9 @@ const renderDashboard = () => {
 $('#btn-customer').on('click', function () {
     showView('view-customers');
     renderCustomers();
-    setTimeout(function () { $('#btn-add-customer').trigger('click'); }, 100);
+    setTimeout(function () {
+        $('#btn-add-customer').trigger('click');
+        }, 100);
 });
 
 $('#btn-item').on('click', function () {

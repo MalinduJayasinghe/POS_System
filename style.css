@@ -498,7 +498,7 @@ h1,h2,h3,h4,h5,h6 {
 .badge-success  {
     background: #F0FFF4;
     color: var(--green);
-    border: var(--green);
+    border: 2px solid var(--green);
 }
 
 .badge-danger   {
@@ -786,7 +786,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 /* -------------------------------- Alert -------------------------------- */
-.alert-warn-inline {
+.warning-text {
     background: var(--light-white);
     color: var(--warn-text);
     border: 1px solid #F6D860;
@@ -835,14 +835,4 @@ h1,h2,h3,h4,h5,h6 {
 
 .modal-body {
     padding: 20px;
-}
-
-/* -------------------------------- Responsive -------------------------------- */
-@media (max-width: 768px) {
-    .page-body { padding: 16px; }
-    .stat-card .stat-value { font-size: 20px; }
-    .navbar { padding: 0 12px; }
-    .navbar-brand span { display: none; }
-    .filter-bar { gap: 8px; }
-    .filter-input { width: 110px; }
 }
